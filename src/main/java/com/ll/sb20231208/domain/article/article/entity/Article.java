@@ -1,9 +1,7 @@
 package com.ll.sb20231208.domain.article.article.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.ll.sb20231208.domain.member.member.entity.Member;
+import jakarta.persistence.*;
 import lombok.*;
 
 import static lombok.AccessLevel.PROTECTED;
@@ -20,7 +18,8 @@ public class Article {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
     private Long id;
-    private long authorId;
+    @ManyToOne
+    private Member author;
     private String title;
     private String body;
 }
