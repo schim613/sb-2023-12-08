@@ -22,11 +22,20 @@ public class QArticle extends EntityPathBase<Article> {
 
     public static final QArticle article = new QArticle("article");
 
+    public final com.ll.sb20231208.global.jpa.baseEntity.QBaseEntity _super = new com.ll.sb20231208.global.jpa.baseEntity.QBaseEntity(this);
+
     public final com.ll.sb20231208.domain.member.member.entity.QMember author;
 
     public final StringPath body = createString("body");
 
-    public final NumberPath<Long> id = createNumber("id", Long.class);
+    //inherited
+    public final DateTimePath<java.time.LocalDateTime> createDate = _super.createDate;
+
+    //inherited
+    public final NumberPath<Long> id = _super.id;
+
+    //inherited
+    public final DateTimePath<java.time.LocalDateTime> modifyDate = _super.modifyDate;
 
     public final StringPath title = createString("title");
 
