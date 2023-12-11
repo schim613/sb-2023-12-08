@@ -37,4 +37,11 @@ public class ArticleServiceTest {
 
         assertThat(author.getUsername()).isEqualTo("user1");
     }
+
+    @DisplayName("1번 글을 가져온다.")
+    @Test
+    void t3() {
+        Article article = articleService.findById(1L).get();
+        assertThat(article.getTitle()).isEqualTo("제목1");
+    }
 }
