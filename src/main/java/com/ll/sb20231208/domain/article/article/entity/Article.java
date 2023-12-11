@@ -20,6 +20,7 @@ public class Article {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
     private Long id;
+    private long authorId;
     private String title;
     private String body;
 }

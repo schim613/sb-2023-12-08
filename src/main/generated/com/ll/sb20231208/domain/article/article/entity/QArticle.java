@@ -19,6 +19,8 @@ public class QArticle extends EntityPathBase<Article> {
 
     public static final QArticle article = new QArticle("article");
 
+    public final NumberPath<Long> authorId = createNumber("authorId", Long.class);
+
     public final StringPath body = createString("body");
 
     public final NumberPath<Long> id = createNumber("id", Long.class);
