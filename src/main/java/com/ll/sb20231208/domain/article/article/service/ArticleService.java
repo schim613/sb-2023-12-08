@@ -2,6 +2,7 @@ package com.ll.sb20231208.domain.article.article.service;
 
 import com.ll.sb20231208.domain.article.article.entity.Article;
 import com.ll.sb20231208.domain.article.article.repository.ArticleRepository;
+import com.ll.sb20231208.domain.article.articleComment.entity.ArticleComment;
 import com.ll.sb20231208.domain.member.member.entity.Member;
 import com.ll.sb20231208.global.rsData.RsData;
 import lombok.RequiredArgsConstructor;
@@ -39,5 +40,10 @@ public class ArticleService {
     public void modify(Article article, String title, String body) {
         article.setTitle(title);
         article.setBody(body); // 객체 내용을 바꾸면 더티 체킹을 이용해서 트랜잭션이 끝날 때 DB에 반영
+    }
+
+    @Transactional
+    public void modifyConmment(ArticleComment comment, String body) {
+        comment.setBody(body);
     }
 }
