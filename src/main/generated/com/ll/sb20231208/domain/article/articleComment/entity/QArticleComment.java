@@ -1,4 +1,4 @@
-package com.ll.sb20231208.domain.article.article.entity;
+package com.ll.sb20231208.domain.article.articleComment.entity;
 
 import static com.querydsl.core.types.PathMetadataFactory.*;
 
@@ -11,24 +11,24 @@ import com.querydsl.core.types.dsl.PathInits;
 
 
 /**
- * QArticle is a Querydsl query type for Article
+ * QArticleComment is a Querydsl query type for ArticleComment
  */
 @Generated("com.querydsl.codegen.DefaultEntitySerializer")
-public class QArticle extends EntityPathBase<Article> {
+public class QArticleComment extends EntityPathBase<ArticleComment> {
 
-    private static final long serialVersionUID = -280071441L;
+    private static final long serialVersionUID = 622971547L;
 
     private static final PathInits INITS = PathInits.DIRECT2;
 
-    public static final QArticle article = new QArticle("article");
+    public static final QArticleComment articleComment = new QArticleComment("articleComment");
 
     public final com.ll.sb20231208.global.jpa.baseEntity.QBaseEntity _super = new com.ll.sb20231208.global.jpa.baseEntity.QBaseEntity(this);
+
+    public final com.ll.sb20231208.domain.article.article.entity.QArticle article;
 
     public final com.ll.sb20231208.domain.member.member.entity.QMember author;
 
     public final StringPath body = createString("body");
-
-    public final ListPath<com.ll.sb20231208.domain.article.articleComment.entity.ArticleComment, com.ll.sb20231208.domain.article.articleComment.entity.QArticleComment> comments = this.<com.ll.sb20231208.domain.article.articleComment.entity.ArticleComment, com.ll.sb20231208.domain.article.articleComment.entity.QArticleComment>createList("comments", com.ll.sb20231208.domain.article.articleComment.entity.ArticleComment.class, com.ll.sb20231208.domain.article.articleComment.entity.QArticleComment.class, PathInits.DIRECT2);
 
     //inherited
     public final DateTimePath<java.time.LocalDateTime> createDate = _super.createDate;
@@ -39,26 +39,25 @@ public class QArticle extends EntityPathBase<Article> {
     //inherited
     public final DateTimePath<java.time.LocalDateTime> modifyDate = _super.modifyDate;
 
-    public final StringPath title = createString("title");
-
-    public QArticle(String variable) {
-        this(Article.class, forVariable(variable), INITS);
+    public QArticleComment(String variable) {
+        this(ArticleComment.class, forVariable(variable), INITS);
     }
 
-    public QArticle(Path<? extends Article> path) {
+    public QArticleComment(Path<? extends ArticleComment> path) {
         this(path.getType(), path.getMetadata(), PathInits.getFor(path.getMetadata(), INITS));
     }
 
-    public QArticle(PathMetadata metadata) {
+    public QArticleComment(PathMetadata metadata) {
         this(metadata, PathInits.getFor(metadata, INITS));
     }
 
-    public QArticle(PathMetadata metadata, PathInits inits) {
-        this(Article.class, metadata, inits);
+    public QArticleComment(PathMetadata metadata, PathInits inits) {
+        this(ArticleComment.class, metadata, inits);
     }
 
-    public QArticle(Class<? extends Article> type, PathMetadata metadata, PathInits inits) {
+    public QArticleComment(Class<? extends ArticleComment> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
+        this.article = inits.isInitialized("article") ? new com.ll.sb20231208.domain.article.article.entity.QArticle(forProperty("article"), inits.get("article")) : null;
         this.author = inits.isInitialized("author") ? new com.ll.sb20231208.domain.member.member.entity.QMember(forProperty("author")) : null;
     }
 

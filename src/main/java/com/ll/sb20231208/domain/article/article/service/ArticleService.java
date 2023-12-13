@@ -39,6 +39,5 @@ public class ArticleService {
     public void modify(Article article, String title, String body) {
         article.setTitle(title);
         article.setBody(body); // 객체 내용을 바꾸면 더티 체킹을 이용해서 트랜잭션이 끝날 때 DB에 반영
-        article.setModifyDate(LocalDateTime.now());
     }
 }

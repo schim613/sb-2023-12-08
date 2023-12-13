@@ -22,8 +22,8 @@ repositories {
 }
 
 dependencies {
-    testImplementation 'org.projectlombok:lombok:1.18.28'
-	testImplementation 'org.projectlombok:lombok:1.18.28'
+    testImplementation 'org.projectlombok:lombok:1.18.30'
+	testImplementation 'org.projectlombok:lombok:1.18.30'
 
 	// LOMBOK
 	compileOnly 'org.projectlombok:lombok'
