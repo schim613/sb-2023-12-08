@@ -2,6 +2,9 @@ package com.ll.sb20231208.domain.article.article.service;
 
 import com.ll.sb20231208.domain.article.article.entity.Article;
 import com.ll.sb20231208.domain.article.articleComment.entity.ArticleComment;
+import com.ll.sb20231208.domain.article.articleComment.service.ArticleCommentService;
+import com.ll.sb20231208.domain.article.articleTag.entity.ArticleTag;
+import com.ll.sb20231208.domain.article.articleTag.service.ArticleTagService;
 import com.ll.sb20231208.domain.member.member.entity.Member;
 import com.ll.sb20231208.domain.member.member.service.MemberService;
 import com.ll.sb20231208.global.rsData.RsData;
@@ -27,6 +30,10 @@ public class ArticleServiceTest {
     private ArticleService articleService;
     @Autowired
     private MemberService memberService;
+    @Autowired
+    private ArticleCommentService articleCommentService;
+    @Autowired
+    private ArticleTagService articleTagService;
 
     @DisplayName("글 쓰기")
     @Test
@@ -125,5 +132,21 @@ public class ArticleServiceTest {
         Article article1 = articleService.findById(1L).get();
 
         System.out.println(article1);
+    }
+
+    @DisplayName("1번 회원이 작성한 댓글들")
+    @Test
+    void t11() {
+        List<ArticleComment> articleComments = articleCommentService.findByAuthorId(1L);
+
+        assertThat(articleComments.size()).isGreaterThan(0);
+    }
+
+    @DisplayName("1번 회원이 작성한 태그들")
+    @Test
+    void t12() {
+        List<ArticleTag> articleTags = articleTagService.findByAuthorId(1L);
+
+        assertThat(articleTags.size()).isGreaterThan(0);
     }
 }
