@@ -26,6 +26,8 @@ public class QArticleTag extends EntityPathBase<ArticleTag> {
 
     public final com.ll.sb20231208.domain.article.article.entity.QArticle article;
 
+    public final com.ll.sb20231208.domain.member.member.entity.QMember author;
+
     public final StringPath content = createString("content");
 
     //inherited
@@ -56,6 +58,7 @@ public class QArticleTag extends EntityPathBase<ArticleTag> {
     public QArticleTag(Class<? extends ArticleTag> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
         this.article = inits.isInitialized("article") ? new com.ll.sb20231208.domain.article.article.entity.QArticle(forProperty("article"), inits.get("article")) : null;
+        this.author = inits.isInitialized("author") ? new com.ll.sb20231208.domain.member.member.entity.QMember(forProperty("author")) : null;
     }
 
 }
