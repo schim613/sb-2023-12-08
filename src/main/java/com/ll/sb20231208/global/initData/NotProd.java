@@ -31,6 +31,7 @@ public class NotProd {
             @Override
             public void run(ApplicationArguments args) {
                 self.work1(); // this.work1();
+                self.work2();
             }
         };
     }
@@ -63,11 +64,11 @@ public class NotProd {
         article2.addComment(member1, "댓글4");
         article2.addComment(member1, "댓글5");
 
+        // throw new RuntimeException("강제로 예외를 발생시킵니다.");
+        // 트랜젝션 중에 런타임예외가 발생하면 전체가 없던 일이 되어버림
+
         article1.addTag("자바");
         article1.addTag("백엔드");
         article2.addTag("프레임워크", "스프링부트");
-
-        // throw new RuntimeException("강제로 예외를 발생시킵니다.");
-        // 트랜젝션 중에 런타임예외가 발생하면 전체가 없던 일이 되어버림
     }
 }
