@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static jakarta.persistence.CascadeType.ALL;
+import static jakarta.persistence.FetchType.EAGER;
 import static lombok.AccessLevel.PROTECTED;
 
 @Entity
@@ -29,7 +30,7 @@ public class Article extends BaseEntity {
     private String title;
     private String body;
 
-    @OneToMany(mappedBy = "article", cascade = ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "article", cascade = ALL, orphanRemoval = true, fetch = EAGER)
     @Builder.Default
     private List<ArticleComment> comments = new ArrayList<>();
 
