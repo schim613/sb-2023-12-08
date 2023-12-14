@@ -39,6 +39,8 @@ public class QArticle extends EntityPathBase<Article> {
     //inherited
     public final DateTimePath<java.time.LocalDateTime> modifyDate = _super.modifyDate;
 
+    public final ListPath<com.ll.sb20231208.domain.article.articleTag.entity.ArticleTag, com.ll.sb20231208.domain.article.articleTag.entity.QArticleTag> tags = this.<com.ll.sb20231208.domain.article.articleTag.entity.ArticleTag, com.ll.sb20231208.domain.article.articleTag.entity.QArticleTag>createList("tags", com.ll.sb20231208.domain.article.articleTag.entity.ArticleTag.class, com.ll.sb20231208.domain.article.articleTag.entity.QArticleTag.class, PathInits.DIRECT2);
+
     public final StringPath title = createString("title");
 
     public QArticle(String variable) {

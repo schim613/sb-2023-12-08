@@ -1,6 +1,7 @@
 package com.ll.sb20231208.domain.article.article.entity;
 
 import com.ll.sb20231208.domain.article.articleComment.entity.ArticleComment;
+import com.ll.sb20231208.domain.article.articleTag.entity.ArticleTag;
 import com.ll.sb20231208.domain.member.member.entity.Member;
 import com.ll.sb20231208.global.jpa.baseEntity.BaseEntity;
 import jakarta.persistence.Entity;
@@ -34,6 +35,10 @@ public class Article extends BaseEntity {
     @Builder.Default
     private List<ArticleComment> comments = new ArrayList<>();
 
+    @OneToMany(mappedBy = "article", cascade = ALL, orphanRemoval = true, fetch = EAGER)
+    @Builder.Default
+    private List<ArticleTag> tags = new ArrayList<>();
+
     public void addComment(Member commentAuthor, String commentBody) {
         ArticleComment comment = ArticleComment.builder()
                 .article(this)
@@ -50,5 +55,14 @@ public class Article extends BaseEntity {
 
     public void addComment(ArticleComment comment) {
         comments.add(comment);
+    }
+
+    public void addTag(String tagContent) {
+        ArticleTag tag = ArticleTag.builder()
+                .article(this)
+                .content(tagContent)
+                .build();
+
+        tags.add(tag);
     }
 }
