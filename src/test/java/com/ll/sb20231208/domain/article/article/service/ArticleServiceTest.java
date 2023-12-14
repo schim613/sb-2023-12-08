@@ -10,8 +10,11 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -71,8 +74,6 @@ public class ArticleServiceTest {
         Article article2 = articleService.findById(2L).get();
 
         article2.addComment(member1, "댓글1");
-
-        // articleCommentService.write(member1, article2, "댓글1");
     }
 
     @DisplayName("1번 글의 댓글들을 수정한다.")
@@ -81,22 +82,30 @@ public class ArticleServiceTest {
         Article article1 = articleService.findById(1L).get();
 
         article1.getComments().getLast().setBody("수정된 댓글");
-
-        // ArticleComment comment = articleCommentService.findLatest().get();
-
-        // articleCommentService.modify(comment, "new body");
     }
 
     @DisplayName("1번 글의 댓글 중 마지막 것을 삭제한다.")
     @Test
+    @Rollback(false)
     void t7() {
         Article article1 = articleService.findById(1L).get();
 
         ArticleComment lastComment = article1.getComments().getLast();
-        article1.removeComment(lastComment);
+        article1.removeComment(lastComment); // 즉시 삭제가 되는게 아니라 로직이 다 끝나고 실행 -> 충돌할 수 있어서 즉시 삭제 명령어 찾아보기
 
-        // ArticleComment comment = articleCommentService.findFirstByArticleIdOrderByIdDesc(1L).get();
+        // 로직
+        // 로직
+        // 로직
+    }
 
-        // articleCommentService.delete(comment);
+    @DisplayName("게시물 별 댓글 수 출력")
+    @Test
+    void t8() {
+        List<Article> articles = articleService.findAll();
+
+        articles.forEach(article -> {
+            System.out.println("게시물 번호: " + article.getId());
+            System.out.println("댓글 수: " + article.getComments().size());
+        });
     }
 }

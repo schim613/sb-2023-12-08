@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -39,5 +40,9 @@ public class ArticleService {
     public void modify(Article article, String title, String body) {
         article.setTitle(title);
         article.setBody(body); // 객체 내용을 바꾸면 더티 체킹을 이용해서 트랜잭션이 끝날 때 DB에 반영
+    }
+
+    public List<Article> findAll() {
+        return articleRepository.findByOrderByIdDesc();
     }
 }
