@@ -10,7 +10,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -67,31 +66,37 @@ public class ArticleServiceTest {
 
     @DisplayName("2번 글에 댓글들을 추가한다.")
     @Test
-    @Rollback(value = false)
     void t5() {
         Member member1 = memberService.findById(1L).get();
         Article article2 = articleService.findById(2L).get();
 
         article2.addComment(member1, "댓글1");
+
+        // articleCommentService.write(member1, article2, "댓글1");
     }
 
     @DisplayName("1번 글의 댓글들을 수정한다.")
     @Test
     void t6() {
-        Article article = articleService.findById(1L).get();
+        Article article1 = articleService.findById(1L).get();
 
-        article.getComments().forEach(comment -> {
-            articleService.modifyConmment(comment, comment.getBody() + "!!");
-        });
+        article1.getComments().getLast().setBody("수정된 댓글");
+
+        // ArticleComment comment = articleCommentService.findLatest().get();
+
+        // articleCommentService.modify(comment, "new body");
     }
 
     @DisplayName("1번 글의 댓글 중 마지막 것을 삭제한다.")
     @Test
     void t7() {
-        Article article = articleService.findById(1L).get();
+        Article article1 = articleService.findById(1L).get();
 
-        ArticleComment lastComment = article.getComments().getLast();
+        ArticleComment lastComment = article1.getComments().getLast();
+        article1.removeComment(lastComment);
 
-        article.removeComment(lastComment);
+        // ArticleComment comment = articleCommentService.findFirstByArticleIdOrderByIdDesc(1L).get();
+
+        // articleCommentService.delete(comment);
     }
 }
