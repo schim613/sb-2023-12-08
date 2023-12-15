@@ -49,14 +49,6 @@ public class ArticleService {
     }
 
     public Page<Article> search(List<String> kwTypes, String kw, Pageable pageable) {
-        if (kwTypes.contains("title") && kwTypes.contains("body")) {
-            return articleRepository.findByTitleContainingOrBodyContaining(kw, kw, pageable);
-        } else if (kwTypes.contains("title")) {
-            return articleRepository.findByTitleContaining(kw, pageable);
-        } else if (kwTypes.contains("body")) {
-            return articleRepository.findByBodyContaining(kw, pageable);
-        }
-
         return articleRepository.findAll(pageable);
     }
 }
