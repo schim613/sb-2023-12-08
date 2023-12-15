@@ -6,6 +6,8 @@
 
 <h1>게시물 목록</h1>
 
+<hr>
+
 <form>
     <div style="display:flex; gap:10px;">
         <label><input type="checkbox" name="kwType" value="authorUsername"><span>작성자</span></label>
@@ -15,9 +17,13 @@
         <label><input type="checkbox" name="kwType" value="commentAuthorUsername"><span>댓글 작성자</span></label>
         <label><input type="checkbox" name="kwType" value="commentBody"><span>댓글 내용</span></label>
     </div>
-    <input type="search" name="kw" placeholder="검색어">
-    <input type="submit" value="검색">
+    <div class="mt-2 mb-4">
+        <input type="search" name="kw" placeholder="검색어" th:value="${param.kw}" class="input input-bordered w-full max-w-xs" />
+        <button class="btn">Button</button>
+    </div>
 </form>
+
+<hr>
 
 <div class="overflow-x-auto">
     <table class="table">
@@ -34,13 +40,13 @@
         <tbody>
             <tr th:each="article : ${itemsPage.content}">
                 <td th:text="${article.id}"></td>
-                <td th:text="${article.createDate}"></td>
-                <td th:text="${article.modifyDate}"></td>
                 <td>
                     <span th:text="${article.title}"></span>
                     <span th:text="${article.tagsStr}"></span>
                 </td>
                 <td th:text="${article.body}"></td>
+                <td th:text="${article.createDate}"></td>
+                <td th:text="${article.modifyDate}"></td>
             </tr>
         </tbody>
     </table>
@@ -48,7 +54,7 @@
 
 <hr>
 
-<div class="join">
+<div class="join mt-4 mb-4">
     <a th:each="num : ${#numbers.sequence(0, itemsPage.totalPages - 1)}" th:href="|?page=${num}|" th:text="${num}" class="join-item btn"></a>
 </div>
 
