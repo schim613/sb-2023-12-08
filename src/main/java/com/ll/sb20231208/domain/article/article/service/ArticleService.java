@@ -5,6 +5,8 @@ import com.ll.sb20231208.domain.article.article.repository.ArticleRepository;
 import com.ll.sb20231208.domain.member.member.entity.Member;
 import com.ll.sb20231208.global.rsData.RsData;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -44,5 +46,9 @@ public class ArticleService {
 
     public List<Article> findAll() {
         return articleRepository.findByOrderByIdDesc();
+    }
+
+    public Page<Article> search(Pageable pagealbe) {
+        return articleRepository.findAll(pagealbe);
     }
 }
