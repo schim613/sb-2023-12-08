@@ -48,6 +48,7 @@ public class ArticleController {
 
         Page<Article> itemsPage = this.articleService.search(pagealbe);
         model.addAttribute("itemsPage", itemsPage);
+        model.addAttribute("kwTypesMap", kwTypesMap);
 
         return "article/list";
     }
