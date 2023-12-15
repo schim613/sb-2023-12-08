@@ -29,13 +29,13 @@ public class ArticleController {
     @GetMapping("/list")
     public String list(
             @RequestParam(value = "kwType", defaultValue = "") List<String> kwTypes,
+            @RequestParam(value = "kw", defaultValue = "") String kw,
             @RequestParam(value = "page", defaultValue = "0") int page,
             Model model
     ) {
-        log.debug("kwTypes : {}", kwTypes);
         List<Sort.Order> sorts = new ArrayList<>();
         sorts.add(Sort.Order.desc("id"));
-        Pageable pagealbe = PageRequest.of(page, 10, Sort.by(sorts));
+        Pageable pageable = PageRequest.of(page, 10, Sort.by(sorts));
 
         Map<String, Boolean> kwTypesMap = kwTypes
                 .stream()
@@ -44,9 +44,7 @@ public class ArticleController {
                         kwType -> true
                 ));
 
-        log.debug("kwTypesMap : {}", kwTypesMap);
-
-        Page<Article> itemsPage = this.articleService.search(pagealbe);
+        Page<Article> itemsPage = this.articleService.search(kwTypes, kw, pageable);
         model.addAttribute("itemsPage", itemsPage);
         model.addAttribute("kwTypesMap", kwTypesMap);
 
