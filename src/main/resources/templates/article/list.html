@@ -36,11 +36,7 @@
 <hr>
 
 <div class="join">
-    <a href="?page=0" class="join-item btn">1</a>
-    <a href="?page=1" class="join-item btn">2</a>
-    <a href="?page=5" class="join-item btn">...</a>
-    <a href="?page=10" class="join-item btn">10</a>
-    <a href="?page=11" class="join-item btn">11</a>
+    <a th:each="num : ${#numbers.sequence(0, itemsPage.totalPages - 1)}" th:href="|?page=${num}|" th:text="${num}" class="join-item btn"></a>
 </div>
 
 <hr>
